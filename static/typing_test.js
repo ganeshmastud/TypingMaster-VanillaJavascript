@@ -240,45 +240,23 @@ let start_time = 0;
 let get_time = 0;
 let flag = true;
 let unmatch = {};
+let error_cnt=0;
 document.getElementById("type-txt").addEventListener("input", function () {
     // console.log(event.which);
+	let unmatch_cnt=0;
     let p_elem = document.getElementById("paragraph");
     let fst_txt = p_elem.innerText;  // paragraph agains which we try to make type text match
 
     let chk = this.value;
     let mtch_str = "";
     let traverse = Object.keys(unmatch).length - 1;
-    // console.log(unmatch);
-    if (traverse > 0) {
-        //console.log("tvs",traverse);
-        // if(unmatch[traverse][0]> chk.length){
-        //     while(unmatch[traverse][0] > chk.length){
-        //       unmatch.pop();
-        //       traverse=traverse-1;
-        //     }
-
-        for (let property in unmatch) {
-
-            if (parseInt(property) >= chk.length) {
-                //console.log("in_f",chk.length, parseInt(property));  
-                delete unmatch[property];
-            }
-            // else{
-            //   break;
-            // }
-            //unmatch[property];
-        }
-
-
-
-    }//unmatch.length 
-    if (Object.keys(unmatch).length > 4) {
+   
+    if (error_cnt > 4) {
         chk = chk.slice(0, err_len);
         this.value = chk;
     }
     let min_len = Math.min(chk.length, fst_txt.length);
 
-    err_idx = {};
     for (let idx = 0; idx < min_len; idx++) {
         if (fst_txt[idx] === chk[idx]) {
             mtch_str = mtch_str + fst_txt[idx];
@@ -286,18 +264,16 @@ document.getElementById("type-txt").addEventListener("input", function () {
         else {
 
             mtch_str = mtch_str + "<span class='err' style='background-color:red; color:white;'>" + fst_txt[idx] + "</span>";
-            //err+=1;
-            if (!(idx in unmatch)) {
-                unmatch[idx] = fst_txt[idx];
-                // err_idx[idx] = fst_txt[idx];
-            }
-            //unmatch.push([idx,fst_txt[idx]]);
+            
+           
+			unmatch_cnt=unmatch_cnt+1;
+            
             err_len = chk.length;
-            //console.log("er",err_len);
+            
 
         }
     }
-    // unmatch = err_idx;
+	error_cnt=unmatch_cnt;
 
     p_elem.innerHTML = "<span id='match' style='color:black'>" + mtch_str + "</span>" + fst_txt.slice(chk.length, fst_txt.length);
     let today_date = new Date();
@@ -321,12 +297,7 @@ document.getElementById("type-txt").addEventListener("input", function () {
         let speed = type_speed.toFixed(3)
         setTimeout(function () { alert("Your typing speed is " + speed + " WPM.") }, 500);
     }
-    // else{
-    //     document.getElementById("finish-txt").disabled=true;
-    // }
+   
 
 });
 
-// document.getElementById("finish-txt").addEventListener("click", function () {
-//     alert("you completed test");
-// });

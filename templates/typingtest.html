@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Typing Test</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .container {
+        text-align: center;
+      }
+      #cnt-1,
+      #cnt-2 {
+        float: left;
+        margin-left: 5%;
+        width: 44%;
+        height: 80%;
+        background-color: white;
+        border-style: solid;
+        border-width: 1.5px;
+        border-color: black;
+      }
+      #cnt-2 {
+        margin-left: 1.5%;
+        margin-right: 3%;
+      }
+
+      #enter-txt,
+      #type-txt,
+      #paragraph {
+        margin: 2px;
+        width: 99%;
+        height: 85%;
+        resize: none;
+      }
+
+      #sub-h1 {
+        float: left;
+        margin: 5px;
+        text-align: left;
+      }
+      #sub-h2 {
+        float: right;
+        margin-right: 5px;
+        margin-top: 5px;
+      }
+      #submit-txt,
+      #finish-txt,
+      #refresh-txt,
+      #default-txt {
+        float: right;
+        margin: 0.5%;
+        width: 20%;
+        font-size: 12;
+        height: 6.5%;
+        font-weight: 600;
+      }
+      #add-paragraph {
+        float: right;
+        margin: 0.5%;
+        width: 20%;
+        font-size: 11;
+        height: 6.5%;
+        font-weight: 550;
+      }
+      #type-err {
+        background-color: red;
+        color: white;
+      }
+      #change-para {
+        float: right;
+        font-size: 11;
+        margin: 1.7px;
+        height: 25px;
+        width: 85px;
+        font-weight: 550;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h1>Typing Test</h1>
+        <br />
+      </div>
+
+      <div id="cnt-1">
+        <span id="sub-h1">paragraph to be write</span>
+        <button type="submit" id="change-para">Change Test</button>
+        <div
+          id="enter-txt"
+          style="border: 1.5px solid black; margin: 30px 4px 4px 2px"
+        >
+          <p id="paragraph" style="float: left"></p>
+        </div>
+
+        <button
+          type="submit"
+          id="add-paragraph"
+          style="font-size: 12px"
+          title="Click here to Add Paragraph"
+        >
+          Add Paragraph
+        </button>
+      </div>
+      <div id="cnt-2">
+        <span id="sub-h1"
+          >When you start typing score will be calculated automatically
+        </span>
+        <span id="sub-h2"><span id="type-speed">0</span> wpm</span>
+        <textarea
+          id="type-txt"
+          placeholder="please start typing here"
+        ></textarea>
+        <br />
+      </div>
+    </div>
+	<script type="text/javascript" src="/static/typing_test.js"></script>
+    
+  </body>
+</html>
